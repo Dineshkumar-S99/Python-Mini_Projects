@@ -30,13 +30,144 @@ def blackjack_first(cards,users_value,computers_value,users_total,computers_tota
     first_choices(cards,users_value,computers_value)
     users_total=adding_vals(users_value)
     computers_total=adding_vals(computers_value)
-    print(users_total, "com",computers_total)
+    print(f"Your cards are {users_value} and your total is {users_total}")
+    return computers_total,users_total
 
-blackjack_first(cards,users_value,computers_value,users_total,computers_total)
+#blackjack_first(cards,users_value,computers_value,users_total,computers_total)
+
+def ace():
+    if Ace in users_value and users_total>21:
+        users_value.remove(Ace)
+        Ace=1
+        users_value.append(Ace)
+        return adding_vals(users_value)
 
 
+game_play=True
 
-
-#while True:
-    #pass
+while game_play:
+    play_game=input("Do you want to start the game? \nTypes 'Y' for Yes and 'N' for no: ").lower()
+    if play_game=="y":
+        ace()
+        blackjack_first(cards,users_value,computers_value,users_total,computers_total)
+        play_game=input("Do you want to change the card? \nTypes 'Y' for Yes and 'N' for no: ").lower()
+        if play_game=="y":
+            users_thirdcard=cards[randint(0,len(cards)-1)]
+            #computers_thirdcard=cards[randint(0,len(cards)-1)]
+            users_value.append(cards[randint(0,len(cards)-1)])
+            users_total+=users_thirdcard
+            #computers_total+=computers_thirdcard
+            ace()
+            if users_total>21:
+                print("You lose")
+                game_play=input("Do you want to play again? \nTypes 'Y' for Yes and 'N' for no: ").lower()
+                if game_play=="y":
+                    continue
+                else:
+                    break
+            elif computers_total==21 or computers_total>users_total:
+                print("You lose")
+                game_play=input("Do you want to play again? \nTypes 'Y' for Yes and 'N' for no: ").lower()
+                if game_play=="y":
+                    continue
+                else:
+                    break
+            elif computers_total<17:
+                computers_thirdcard=cards[randint(0,len(cards)-1)]
+                computers_total+=computers_thirdcard
+                if computers_total==21 or computers_total>users_total:
+                  print("You lose")
+                  game_play=input("Do you want to play again? \nTypes 'Y' for Yes and 'N' for no: ").lower()
+                  if game_play=="y":
+                    continue
+                  else:
+                    break
+                elif computers_total==users_total:
+                    print("It's a Draw!")
+                    game_play=input("Do you want to play again? \nTypes 'Y' for Yes and 'N' for no: ").lower()
+                    if game_play=="y":
+                      continue
+                    else:
+                      break
+                else:
+                    print("You win!!!!")
+                    game_play=input("Do you want to play again? \nTypes 'Y' for Yes and 'N' for no: ").lower()
+                    if game_play=="y":
+                      continue
+                    else:
+                      break
+            elif computers_total==users_total:
+                print("It's a Draw!")
+                game_play=input("Do you want to play again? \nTypes 'Y' for Yes and 'N' for no: ").lower()
+                if game_play=="y":
+                  continue
+                else:
+                  break
+            else:
+              print("You win!!!!")
+              game_play=input("Do you want to play again? \nTypes 'Y' for Yes and 'N' for no: ").lower()
+              if game_play=="y":
+                continue
+              else:
+                break
+        elif play_game=="n":
+          if users_total>21:
+            print("You lose")
+            game_play=input("Do you want to play again? \nTypes 'Y' for Yes and 'N' for no: ").lower()
+            if game_play=="y":
+              continue
+            else:
+              break
+          elif computers_total==21 or computers_total>users_total:
+            print("You lose")
+            game_play=input("Do you want to play again? \nTypes 'Y' for Yes and 'N' for no: ").lower()
+            if game_play=="y":
+              continue
+            else:
+              break
+          elif computers_total<17:
+            computers_thirdcard=cards[randint(0,len(cards)-1)]
+            computers_total+=computers_thirdcard
+            if computers_total==21 or computers_total>users_total:
+              print("You lose")
+              game_play=input("Do you want to play again? \nTypes 'Y' for Yes and 'N' for no: ").lower()
+              if game_play=="y":
+                continue
+              else:
+                break
+            elif computers_total==users_total:
+              print("It's a Draw!")
+              game_play=input("Do you want to play again? \nTypes 'Y' for Yes and 'N' for no: ").lower()
+              if game_play=="y":
+                continue
+              else:
+                break
+            else:
+              print("You win!!!!")
+              game_play=input("Do you want to play again? \nTypes 'Y' for Yes and 'N' for no: ").lower()
+              if game_play=="y":
+                continue
+              else:
+                break
+          elif computers_total==users_total:
+            print("It's a Draw!")
+            game_play=input("Do you want to play again? \nTypes 'Y' for Yes and 'N' for no: ").lower()
+            if game_play=="y":
+              continue
+            else:
+              break
+          else:
+            print("You win!!!!")
+            game_play=input("Do you want to play again? \nTypes 'Y' for Yes and 'N' for no: ").lower()
+            if game_play=="y":
+              continue
+            else:
+              break
+        else:
+          print("You have entered a wrong value")
+          continue
+    else:
+       break
+                
+    
 #print(cards[0],cards[-2])
