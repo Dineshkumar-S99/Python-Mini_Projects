@@ -320,14 +320,7 @@ def gathering_data(data):
     print(f"'{name}' a {description} from {country}")
     return {'followers':followers,'name':name}
 
-'''def compare_followers(user_choice,choice1,choice2):
-    if choice1['followers']>choice2['followers'] and user_choice==choice1:
-        print(f"{choice1['name']} has more followers")
-        return 0
-    if choice1['followers']<choice2['followers'] and user_choice==choice2:
-        print(f"{choice2['name']} has more followers")
-        return 1'''
-
+#compare followers and return who has more
 def compare_followers(choice1,choice2):
     if choice1['followers']>choice2['followers']:
         print(f"{choice1['name']} has more followers")
@@ -335,26 +328,6 @@ def compare_followers(choice1,choice2):
     elif choice1['followers']<choice2['followers']:
         print(f"{choice2['name']} has more followers")
         return 2
-
-
-'''choice1=randomn_choices(data)
-choice2=randomn_choices(data)
-choice1_data=gathering_data(choice1)
-choice2_data=gathering_data(choice2)
-user_val=int(input("Enter which one do you choose, 1 for choice1 and 2 for choice2\n"))
-comapre_val=compare_followers(choice1_data,choice2_data)
-
-#print(compare_followers(choice1_data,choice2_data))
-score=0
-if comapre_val==1 and user_val==1:
-    score+=1
-    print("you have won")
-elif comapre_val==2 and user_val==2:
-    score+=1
-    print("You have won")
-else:
-    print(f"you've lost, your score {score}")'''
-
 
 
 def game_play(data):
@@ -368,7 +341,7 @@ def game_play(data):
         user_val=int(input("Enter which one do you choose, 1 for choice1 and 2 for choice2\n"))
         comapre_val=compare_followers(choice1_data,choice2_data)
 
-#print(compare_followers(choice1_data,choice2_data))
+        #print(compare_followers(choice1_data,choice2_data))
         if comapre_val==1 and user_val==1:
           score+=1
           #print("\nyou have won")
